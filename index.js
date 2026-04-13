@@ -23,6 +23,7 @@ app.post('/compile', async (req, res) => {
     await new Promise((resolve, reject) => {
       exec(
         `arduino-cli compile --fqbn ${placa} ${carpeta} --output-dir /tmp/${id}/output`,
+        {timeout: 120000},
         (error, stdout, stderr) => {
           if (error) reject(stderr)
           else resolve(stdout)
